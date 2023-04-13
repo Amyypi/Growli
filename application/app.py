@@ -1,3 +1,6 @@
+import json
+import os
+import pymongo
 from types import EllipsisType
 from flask import Flask, jsonify, json, url_for, request, render_template
 from flask_pymongo import PyMongo
@@ -5,7 +8,8 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-app.config['MONGO_URI']='mongodb://localhost:27017/FannieMaeDataSetTechnica'
+
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/technica_2022-HomeBuyerInfo'
 mongo = PyMongo(app)
 db = mongo.db
 
@@ -46,7 +50,6 @@ def getdata():
             LoanAmount = i['LoanAmount'];
             MonthlyMortgagePayment = i['MonthlyMortgagePayment']
             CreditScore= i['CreditScore']
-
 
     #data dict to push to front end 
     #CreditScore
