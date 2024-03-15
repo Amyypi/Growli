@@ -128,8 +128,8 @@
     <!-- Top Header -->
     <header class="mb-auto">
       <div>
-        <img class="float-md-start mb-0" style=" margin-right: 1rem; width:2.5rem; height:2.5rem;" src="{{ url_for('static', filename='dist/logo.svg')}}" />
-        <h2 class="float-md-start mb-0" style="padding-right:1rem;">Growli</h2>
+          <img class="float-md-start mb-0" style=" margin-right: 1rem; width:2.5rem; height:2.5rem;" src="{{ url_for('static', filename='dist/logo.svg')}}" />
+          <h2 class="float-md-start mb-0" style="padding-right:1rem;">Growli</h2>
         <p class="float-md-start mb-0" style="padding-top:.5rem;">{{date_num}}</p>
 
       </div>
@@ -188,7 +188,7 @@
                 <p id="box-text">{{data.CreditScore}}</p>
               </div>
               <div class="col-sm-1">
-                <p id="criteria-met-status">Unmet</p>
+                <p id="criteria-met-status-Credit"></p>
               </div>
             </div>
           </div>
@@ -199,10 +199,10 @@
             </div>
             <div class="row">
               <div class="col-sm-1">
-                <p  id="total_LTV"></p>
+                <p  id="total_LTV">{{data.LTV}}</p>
               </div>
               <div class="col-sm-1">
-                <p id="criteria-met-status">Unmet</p>
+                <p id="criteria-met-status-LTV"></p>
               </div>
             </div>
           </div>
@@ -213,10 +213,10 @@
             </div>
             <div class="row">
               <div class="col-sm-1">
-                <p  id="total_DTI"></p>
+                <p  id="total_DTI">{{data.DTI}}</p>
               </div>
               <div class="col-sm-1">
-                <p id="criteria-met-status">Unmet</p>
+                <p id="criteria-met-status-DTI"></p>
               </div>
             </div>
           </div>
@@ -230,7 +230,7 @@
                 <p  id="total_FEDTI"></p>
               </div>
               <div class="col-sm-1">
-                <p id="criteria-met-status">Unmet</p>
+                <p id="criteria-met-status-FEDTI"></p>
               </div>
 
             </div>
@@ -270,17 +270,26 @@
 
 
       var FEDTI = {{data.FEDTI|tojson}};
+      window.alert(FEDTI);
       if(FEDTI > .28){
         $('#FEDTI-box').css('background-color', '#EC7542');
-        document.getElementById('criteria-met-status').innerHTML = "Unmet" ;
+        document.getElementById('criteria-met-status-FEDTI').innerHTML = 'Unmet' ;
         $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_FEDTI + '</p></div>');
 
       }else{
         $('#FEDTI-box').css('background-color', 'white', 'border', '1px solid #000000','border-style', 'solid');
-        document.getElementById('criteria-met-status').innerHTML = "Met" ;
+        document.getElementById('criteria-met-status-FEDTI').innerHTML = 'Met' ;
       }
-      var fedti_conv = {{data.FEDTI}}.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
+      var fedti_conv = FEDTI.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
+      
       document.getElementById('total_FEDTI').innerHTML = fedti_conv ;
+
+
+      var dict = {};
+
+        var giveValue = function (DTI) {
+            return data[DTI];
+        };
 
        /////////////////////
       // DTI
@@ -288,17 +297,17 @@
       var DTI = {{data.DTI|tojson}};
       if(DTI > .43){
         $('#DTI-box').css('background-color', '#EC7542')
-        document.getElementById('criteria-met-status').innerHTML = "Unmet" ;
+        document.getElementById('criteria-met-status-DTI').innerHTML = "Unmet" ;
 
         $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem;"><p>' + msg_DTI + '</p></div>');
 
       }else{
         $('#DTI-box').css('background-color', 'white', 'border', '1px solid #000000','border-style', 'solid');
-        document.getElementById('criteria-met-status').innerHTML = "Met" ;
+        document.getElementById('criteria-met-status-DTI').innerHTML = "Met" ;
 
       }
 
-      var dti_conv = {{data.DTI}}.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
+      var dti_conv = DTI.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
       document.getElementById('total_DTI').innerHTML = dti_conv;
 
        /////////////////////
@@ -307,23 +316,23 @@
       var LTV = {{data.LTV|tojson}};
       if(LTV > .95){
         $('#criteria-box').css('background-color', 'yellow')
-        document.getElementById('criteria-met-status').innerHTML = "Warning" ;
+        document.getElementById('criteria-met-status-LTV').innerHTML = "Warning" ;
 
         $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_LTV_Warning + '</p></div>');
 
       }else if(LTV >= .85 ){
         $('#LTV-box').css('background-color', '#EC7542');
-        document.getElementById('criteria-met-status').innerHTML = "Unmet" ;
+        document.getElementById('criteria-met-status-LTV').innerHTML = "Unmet" ;
 
         $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_LTV + '</p></div>');
 
       }else{
         $('#LTV-box').css('background-color', 'white', 'border', '1px solid #000000','border-style', 'solid');
-        document.getElementById('criteria-met-status').innerHTML = "Met" ;
+        document.getElementById('criteria-met-status-LTV').innerHTML = "Met" ;
 
       }
 
-      var ltv_conv = {{data.LTV}}.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
+      var ltv_conv = LTV.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
       document.getElementById('total_LTV').innerHTML = ltv_conv;
 
 
@@ -333,11 +342,11 @@
       var cs = {{data.CreditScore|tojson}};
       if(cs > 640){
         $('#CreditScore-box').css('background-color', 'white', 'border', '1px solid #000000',  'border-style', 'solid');
-        document.getElementById('criteria-met-status').innerHTML = "met" ;
+        document.getElementById('criteria-met-status-Credit').innerHTML = "met" ;
 
       }else{
         $('#CreditScore-box').css('background-color', '#EC7542');
-        document.getElementById('criteria-met-status').innerHTML = "unmet" ;
+        document.getElementById('criteria-met-status-Credit').innerHTML = "unmet" ;
 
         $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_CreditScore+ '</p></div>');
 
