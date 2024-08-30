@@ -24,6 +24,8 @@ def getdata():
     holder = list()
     currentCollection = mongo.db.scores
 
+    # Add statistic data to list by ID
+    # (temporary placement, see if this can b e made into a separate funtion)
     for i in currentCollection.find():
         holder.append({'ID':i['ID'], 
                         'GrossMonthlyIncome' : i['GrossMonthlyIncome'],
@@ -36,8 +38,10 @@ def getdata():
                         'MonthlyMortgagePayment' : i['MonthlyMortgagePayment'],
                         'CreditScore' : i['CreditScore']})
 
+    # ID that the user sends in, then get's assigned to 'pay'
     pay = request.form['id']
 
+    # Search throught the list until it finds the user's input ID
     for i in holder:
         if i['ID'] == int(pay):
             ID_num = i['ID'];
@@ -51,15 +55,17 @@ def getdata():
             MonthlyMortgagePayment = i['MonthlyMortgagePayment']
             CreditScore= i['CreditScore']
 
-    #data dict to push to front end 
-    #CreditScore
+    # data dict to push to front end 
+    # Credit scores calculation -> determines if they meet/unmet conditions of a stable financial status
     LTV = (AppraisedValue - DownPayment)/AppraisedValue;
     DTI = (CreditCardPayment + CarPayment + StudentLoanPayments + MonthlyMortgagePayment) / GrossMonthlyIncome
     FEDTI = MonthlyMortgagePayment/GrossMonthlyIncome 
-    
+
+    # Assign final calculations and user's stat data to variable
     data = {'CreditScore': CreditScore, 'LTV': LTV, 'DTI': DTI , 'FEDTI': FEDTI}
     userInfo = {'ID': ID_num, 'AppraisedValue':AppraisedValue, 'DownPayment':DownPayment, 'LoanAmount':LoanAmount, 'MonthlyMortgagePayment':MonthlyMortgagePayment}
 
+    # Calculate what time and day it is
     dateTimeObj = datetime.now()
     date_num = dateTimeObj.strftime("%d %b %Y")
 

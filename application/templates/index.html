@@ -1,3 +1,12 @@
+<!-- 
+ Project: Growli: Home Buyer Dashboard 
+ Project Timeline: Technica 2022 (Met all challenge requirments within 24 hours) 
+ Author: Amy Phan 
+
+ Update: Project going through a rebrand in Aug 2024
+-->
+
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -7,15 +16,15 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cover/">
 
-    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='dist/css/cover.css') }}">
-    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='/dist/css/bootstrap.min.css') }}">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sidebars/">
     <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='/dist/css/bootstrap.min.css') }}">
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='dist/css/cover.css') }}">
     <link rel="shortcut icon" href="#">
 
     </head>
 
-    <!-- ICONS -->
+    <!-- ICONS Temporary -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="bootstrap" viewBox="0 0 118 94">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
@@ -74,14 +83,18 @@
       </symbol>
     </svg>
 
-    <body class="d-flex h-100">
+    <body>
     
-    <!-- NAVBAR -->
-    <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
-      <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+    <!--------------------->
+    <!-- SIDE BAR NAVBAR -->
+    <!--------------------->
+    <div id="sidenav-section" class="d-flex flex-column flex-shrink-0 navbar">
+
+      <a href="/" class="d-block p-3 link-dark" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
         <!-- <svg class="bi pe-none" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
         <span class="visually-hidden">Icon-only</span>
       </a>
+
       <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
         <li class="nav-item">
           <a href="#" class="nav-link py-3 border-bottom rounded-0" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
@@ -113,6 +126,7 @@
         <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
         </a>
+
         <ul class="dropdown-menu text-small shadow">
           <li><a class="dropdown-item" href="#">New project...</a></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -122,134 +136,152 @@
         </ul>
       </div>
     </div>
-  </main>
 
-  <div class=" d-flex w-100 h-100 p-5 flex-column">
-    <!-- Top Header -->
-    <header class="mb-auto">
-      <div>
+  <div class="flex-column" id="dashboard-section">
+
+    <!----------------------->
+    <!-- TOP HEADER        -->
+    <!----------------------->
+    <header class="mb-auto" style="justify-content: space-between; align-content: space-between;">
+      <div class="row-header">
+        <!-- Logo (Temporary)-->
+        <div class="logo">
           <img class="float-md-start mb-0" style=" margin-right: 1rem; width:2.5rem; height:2.5rem;" src="{{ url_for('static', filename='dist/logo.svg')}}" />
-          <h2 class="float-md-start mb-0" style="padding-right:1rem;">Growli</h2>
-        <p class="float-md-start mb-0" style="padding-top:.5rem;">{{date_num}}</p>
+          <h2 class="float-md-start">Growli</h2>
+        </div>
 
+        <!-- user input -->
+        <div class="input-box-section">
+          <form method="POST" action = "/getdata">
+              <div class = "form-group">
+                <p class="user-text-desc" style="color:black">Re-enter ID number</p>
+                <div style=" display: inline flex; align-items: center; align-content: center;">
+                  <input type="text" name = "id">
+                  <input class="btn btn-primary" id="enterIDBut" type="submit" value="Search">
+              </div>
+          </form>
+        </div>
       </div>
     </header>
 
+    <!--------------------->
+    <!-- Body portion    -->
+    <!--------------------->
+    <body onload="statFormatCall()">
 
-    <main style="padding-top: 3rem;">
-      <!-- Body portion -->
-      <div class="row">
-        <div class="col-sm-2" style="margin-bottom: 1rem;">
-          <!-- ID number, other information about user-->
-          <div class="user-text-section">
-            <p class="user-text-desc">ID Number</p>
-            <h3>{{userInfo.ID}}</h3>
-          </div>
-
-          <div class="user-text-section">
-            <p class="user-text-desc">Appraised Value</p>
-            <h3>${{userInfo.AppraisedValue}}</h3>
-          </div>
-
-          <div class="user-text-section">
-            <p class="user-text-desc">Down Payment</p>
-            <h3>${{userInfo.DownPayment}}</h3>
-          </div>
-
-          <div class="user-text-section">
-            <p class="user-text-desc">Loan Amount</p>
-            <h3>${{userInfo.LoanAmount}}</h3>
-          </div>
-
-          <div class="user-text-section">
-            <p class="user-text-desc">Monthly Mortgage Payment</p>
-            <h3>${{userInfo.MonthlyMortgagePayment}}</h3>
-          </div>
-
-          <!-- user input -->
-          <p class="user-text-desc" style="color:black">Re-enter ID number</p>
-          <form method="POST" action = "/getdata">
-              <div class = "form-group">
-                <input type="text" name = "id">
-              </div>
-              <input class="btn btn-primary" id="enterIDBut" type="submit" value="Enter ID">
-          </form>
+      <!-- Top row: User's Mortgage data info is displayed in the top row -->
+      <div class="row-1" id="row-statistic">
+        <!-- ID number, other information about user-->
+        <div class="user-text-section">
+          <p class="user-text-desc">ID Number</p>
+          <h3>{{userInfo.ID}}</h3>
         </div>
 
+        <div id="vertical-div"></div>
 
-        <!--CREDTI SCORE CRITERIA LIST -->
-        <div class="col-sm-5">
-          <div id="CreditScore-box" class="criteria-box">
-            <div class="row">
-              <p class="data-text-desc">Credit Score</p>
-            </div>
-            <div class="row">
-              <div class="col-sm-1">
-                <p id="box-text">{{data.CreditScore}}</p>
-              </div>
-              <div class="col-sm-1">
-                <p id="criteria-met-status-Credit"></p>
-              </div>
-            </div>
-          </div>
+        <div class="user-text-section">
+          <p class="user-text-desc">Appraised Value</p>
+          <h3><span id="AppraisedValue_conv"></span></h3>
+        </div>
 
-          <div id="LTV-box" class="criteria-box">
-            <div class="row">
-              <p class="data-text-desc">LTV</p>
-            </div>
-            <div class="row">
-              <div class="col-sm-1">
-                <p  id="total_LTV">{{data.LTV}}</p>
-              </div>
-              <div class="col-sm-1">
-                <p id="criteria-met-status-LTV"></p>
-              </div>
-            </div>
-          </div>
+        <div id="vertical-div"></div>
 
-          <div id="DTI-box" class="criteria-box">
-            <div class="row">
-              <p class="data-text-desc">DTI</p>
-            </div>
-            <div class="row">
-              <div class="col-sm-1">
-                <p  id="total_DTI">{{data.DTI}}</p>
-              </div>
-              <div class="col-sm-1">
-                <p id="criteria-met-status-DTI"></p>
-              </div>
-            </div>
-          </div>
+        <div class="user-text-section">
+          <p class="user-text-desc">Down Payment</p>
+          <h3><span id="DownPayment_conv"></span></h3>
+        </div>
 
-          <div id="FEDTI-box" class="criteria-box">
-            <div class="row">
-              <p class="data-text-desc">FEDTI</p>
-            </div>
-            <div class="row">
-              <div class="col-sm-1">
-                <p  id="total_FEDTI"></p>
-              </div>
-              <div class="col-sm-1">
-                <p id="criteria-met-status-FEDTI"></p>
-              </div>
+        <div id="vertical-div"></div>
 
+        <div class="user-text-section">
+          <p class="user-text-desc">Loan Amount</p>
+          <h3><span id="LoanAmount_conv"></span></h3>
+        </div>
+
+        <div id="vertical-div"><a></a></div>
+
+        <div class="user-text-section">
+          <p class="user-text-desc">Monthly Mortgage Payment</p>
+          <h3 id="MonthlyMortgagePayment_conv"></h3>
+
+          <p> as of {{date_num}}</p>
+        </div>
+    </div>
+
+      <!-------------------------------------------------------->
+      <!-- row 2: Main body row section with in the dashboard -->
+      <!-------------------------------------------------------->
+    <div class="row-1" id="row-creditscore-and-tips">
+
+      <!-------------------------------------------------------->
+      <!--CREDTI SCORE CRITERIA LIST -->
+      <!-------------------------------------------------------->
+      <div class="row-creditscore">
+        <div id="CreditScore-box" class="criteria-box">
+          <p class="condition-box data-text-desc">Credit Score</p>
+          <div class="row-2">
+            <div class="col">
+              <p id="box-text">{{data.CreditScore}}</p>
+            </div>
+            <div class="col">
+              <p id="criteria-met-status-Credit" class="criteria-met-status box-text"></p>
             </div>
           </div>
         </div>
 
-        <!-- Instructions -->
-        <div class="col-sm-5">
-          <div id="tag-id">
-            <p class="user-text-desc" style="color:black; margin-bottom:2rem;">Advice on how you can improve your criterias!</p>
-
-
+        <div id="LTV-box" class="criteria-box">
+          <p class="data-text-desc">LTV</p>
+          <div class="row-2">
+            <div class="col">
+              <p  id="total_LTV">{{data.LTV}}</p>
+            </div>
+            <div class="col">
+              <p id="criteria-met-status-LTV" class="criteria-met-status box-text"></p>
+            </div>
           </div>
+        </div>
 
+      <div id="DTI-box" class="criteria-box">
+        <p class="data-text-desc">DTI</p>
+        <div class="row-2">
+          <div class="col">
+            <p  id="total_DTI">{{data.DTI}}</p>
+          </div>
+          <div class="col">
+            <p id="criteria-met-status-DTI" class="criteria-met-status box-text"></p>
+          </div>
         </div>
       </div>
-    </main>
 
+      <div id="FEDTI-box" class="criteria-box">
+        <p class="data-text-desc">FEDTI</p>
+        <div class="row-2">
+          <div class="col">
+            <p  id="total_FEDTI"></p>
+          </div>
+          <div class="col">
+            <p id="criteria-met-status-FEDTI" class="criteria-met-status box-text"></p>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--------------------->
+      <!-- Advice/tips list -->
+      <!--------------------->
+
+      <!-- Dashboard shows specific tips based on if the user fails to meet credit score/LTV/DTI/FEDTI requirements -->
+      <div class="col-sm-4" style="margin-top: 1em;" id="advice-list">
+        <!-- Javascript code appends a textbox to this div based on if the user fails to meet credit score/LTV/DTI/FEDTI requirements -->
+        <div id="tag-id"></div>
+      </div>
+    </div>
+  </main>
+
+    <!--------------------->
     <!-- Footer -->
+    <!--------------------->
     <footer class="mt-auto text-white-50">
       <p>Home-buying dashboard by, by <a href="https://twitter.com/mdo" class="text-white">@Amy</a>.</p>
     </footer>
@@ -259,9 +291,9 @@
 <!-- Script-->
 <script type="text/javascript">
 
-      ////////////
-      // FEDTI
-      ////////////
+      /////////////////////////
+      // Temporary messages  //
+      /////////////////////////
       var msg_FEDTI = "Improve your FEDIT score by earning more money, this can include small pocket money that you can make by selling old stuff ;)";
       var msg_CreditScore = "Improve my Credit score by paying your credit balances on time and having multiple credit cards for a long period of time!";
       var msg_DTI = "Lower your DTI by spending less on unnecessary stuff, try to save more money that you can use for later mortgage payments!";
@@ -270,14 +302,13 @@
 
 
       var FEDTI = {{data.FEDTI|tojson}};
-      window.alert(FEDTI);
       if(FEDTI > .28){
-        $('#FEDTI-box').css('background-color', '#EC7542');
+        $('#FEDTI-box').css('background-color', '#FFD86D');
         document.getElementById('criteria-met-status-FEDTI').innerHTML = 'Unmet' ;
-        $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_FEDTI + '</p></div>');
+        $('#tag-id').append('<div style="word-wrap: break-word; word-break: break-all; display: inline flex; padding: 25px; border-radius: 1rem; background-color:#F1EEE8; margin-bottom: 1rem; "><p>' + msg_FEDTI + '</p></div>');
 
       }else{
-        $('#FEDTI-box').css('background-color', 'white', 'border', '1px solid #000000','border-style', 'solid');
+        $('#FEDTI-box').css('background-color', 'white');
         document.getElementById('criteria-met-status-FEDTI').innerHTML = 'Met' ;
       }
       var fedti_conv = FEDTI.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
@@ -296,17 +327,18 @@
        /////////////////////
       var DTI = {{data.DTI|tojson}};
       if(DTI > .43){
-        $('#DTI-box').css('background-color', '#EC7542')
+        $('#DTI-box').css('background-color', '#FFD86D')
         document.getElementById('criteria-met-status-DTI').innerHTML = "Unmet" ;
 
-        $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem;"><p>' + msg_DTI + '</p></div>');
+        $('#tag-id').append('<div style="word-wrap: break-word; display: inline flex; padding: 2em; border-radius: 1rem; background-color:#F1EEE8; margin-bottom: 1rem;"><p>' + msg_DTI + '</p></div>');
 
       }else{
-        $('#DTI-box').css('background-color', 'white', 'border', '1px solid #000000','border-style', 'solid');
+        $('#DTI-box').css('background-color', 'white');
         document.getElementById('criteria-met-status-DTI').innerHTML = "Met" ;
 
       }
 
+   
       var dti_conv = DTI.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:0}); 
       document.getElementById('total_DTI').innerHTML = dti_conv;
 
@@ -315,19 +347,19 @@
        /////////////////////
       var LTV = {{data.LTV|tojson}};
       if(LTV > .95){
-        $('#criteria-box').css('background-color', 'yellow')
+        $('#criteria-box').css('background-color', '#FFD86D')
         document.getElementById('criteria-met-status-LTV').innerHTML = "Warning" ;
 
-        $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_LTV_Warning + '</p></div>');
+        $('#tag-id').append('<div style="word-wrap: break-word;  display: inline flex; padding: 2em; border-radius: 1rem; background-color:#F1EEE8; margin-bottom: 1rem; "><p>' + msg_LTV_Warning + '</p></div>');
 
       }else if(LTV >= .85 ){
-        $('#LTV-box').css('background-color', '#EC7542');
+        $('#LTV-box').css('background-color', '#FFD86D');
         document.getElementById('criteria-met-status-LTV').innerHTML = "Unmet" ;
 
-        $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_LTV + '</p></div>');
+        $('#tag-id').append('<div style="word-wrap: break-word; display: inline flex; padding: 2em; border-radius: 1rem; background-color:#F1EEE8; margin-bottom: 1rem; "><p>' + msg_LTV + '</p></div>');
 
       }else{
-        $('#LTV-box').css('background-color', 'white', 'border', '1px solid #000000','border-style', 'solid');
+        $('#LTV-box').css('background-color', 'white');
         document.getElementById('criteria-met-status-LTV').innerHTML = "Met" ;
 
       }
@@ -341,14 +373,41 @@
        /////////////////////
       var cs = {{data.CreditScore|tojson}};
       if(cs > 640){
-        $('#CreditScore-box').css('background-color', 'white', 'border', '1px solid #000000',  'border-style', 'solid');
+        $('#CreditScore-box').css('background-color', 'white');
         document.getElementById('criteria-met-status-Credit').innerHTML = "met" ;
 
       }else{
-        $('#CreditScore-box').css('background-color', '#EC7542');
+        $('#CreditScore-box').css('background-color', '#FFD86D');
         document.getElementById('criteria-met-status-Credit').innerHTML = "unmet" ;
 
-        $('#tag-id').append('<div style="padding: 25px; border-radius: 1rem; width:100; height:8rem; background-color:#FBD49A; margin-bottom: 1rem; "><p>' + msg_CreditScore+ '</p></div>');
+        $('#tag-id').append('<div style="word-wrap: break-word; word-break: break-all; display: inline flex; padding: 25px; border-radius: 1rem; background-color:#F1EEE8; margin-bottom: 1rem; "><p>' + msg_CreditScore+ '</p></div>');
+
+      }
+
+
+      ///////////////////
+      //money formatting
+      ///////////////////
+      var AppraisedValue = {{userInfo.AppraisedValue|tojson}};
+      var DownPayment = {{userInfo.DownPayment|tojson}};
+      var LoanAmount = {{userInfo.LoanAmount|tojson}};
+      var MonthlyMortgagePayment = {{userInfo.MonthlyMortgagePayment|tojson}};
+      
+    
+      function statFormatCall() {
+        var AppraisedValue_conv = AppraisedValue.toLocaleString(undefined,{style: 'currency', currency: 'USD'}); 
+        var DownPayment_conv = DownPayment.toLocaleString(undefined,{style: 'currency', currency: 'USD'}); 
+        var LoanAmount_conv = LoanAmount.toLocaleString(undefined,{style: 'currency', currency: 'USD'}); 
+        var MonthlyMortgagePayment_conv = MonthlyMortgagePayment.toLocaleString(undefined,{style: 'currency', currency: 'USD'}); 
+
+
+        
+
+
+        document.getElementById("AppraisedValue_conv").innerHTML = AppraisedValue_conv;
+        document.getElementById("DownPayment_conv").innerHTML = DownPayment_conv;
+        document.getElementById("LoanAmount_conv").innerHTML = LoanAmount_conv;
+        document.getElementById("MonthlyMortgagePayment_conv").innerHTML = MonthlyMortgagePayment_conv;
 
       }
 

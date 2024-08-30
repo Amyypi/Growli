@@ -3,6 +3,13 @@
 ## Introduction:
 Growli is a homebuyer guider that will help the user with their home purchase & mortgage plans! The webapp will be able to take in personal financial data values to calculate if they met the criteria.
 
+<b>NOTE:</b>
+This project was done wtihin 24 hours at a Hackathon, so most of the code lines are not properly organized/well written. It is currently being updated.
+
+## *Rebrand/Project Update (Aug 2024)
+View this [link](https://www.figma.com/slides/NV1gh9MJY845AuPSnXUhta/Growli---Research?node-id=13-577&t=RPNp6zr4qOj7gQAv-1) to see the new branding guidelines. This project is still being updated to adjust to new brand.
+
+
 ## Tools, Languages, and Data Set Sources:
 
 Fannie Mae Dataset:
@@ -13,7 +20,7 @@ https://github.com/FannieMaeOpenSource/technica-2022
 This section should list any major languages/frameworks/tools that I used to built my project.
 
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
-    * [Python](https://www.python.org)
+* [Python](https://www.python.org)
 * [Javascript](https://www.javascript.com/)
 * [HTML5/CSS3](https://www.w3.org/html/)
 * [Bootstrap](https://getbootstrap.com)
@@ -43,6 +50,7 @@ python –m venv venv
 ```
 .\venv\Scripts\activate
 ```
+(If unable to execute this, try this: ```Set-ExecutionPolicy Unrestricted -Scope Process```. This will allow you to run the venv in your current powershell session.)
 
 3. Install the extensions 
 ```

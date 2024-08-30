@@ -1,69 +1,107 @@
-/*
- * Globals
- */
+/*********************************/
+/* GLOBAL COLOR                  */
+/*********************************/
+:root{
+  --orange-120:#CF5B18;
+  --orange-100:#f06d30;
+  --orange-20:#ffaf8d;
+  --gray-100: #c3c3c3;
+  --green-100: #16544E;
+  --offwhite: #FFFEFA;
+  --yellow-100: #FFD86D;
+  --teal-100:#64B4AA;
+  --black-100: #1B232F;
+  --gray-100: #ADABA5;
+  --gray-60: #F1EEE8;
+  --gray-20: #FFFEFA;
+  --white: #FFFFFF;
+}
+
+/*********************************/
+ /* Global Tags */
+/*********************************/
+html{
+  height:100%;
+  width: 100%;
+  background-color: var(--black-100);
+  margin: 0;
+  padding: 0;
+}
+
+
  body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  /* text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5); */
-  box-shadow: inset 0 0 5rem rgba(213, 213, 213, 0.5);
+  overflow: hidden;
+  background-color:var(--black-100);
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-html {
-  height: -webkit-fill-available;
+/* hide scrollbar*/
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+  background-color: var(--black-100);
 }
 
-main {
-  height: 100vh;
-  height: -webkit-fill-available;
-  max-height: 100vh;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
+/*********************************/
+/* Temporary svg/visual coloring */
+/*********************************/
 svg{
-  color: black;
-  /* background-color: orange; */
+  color: var(--orange-100);
 }
 
 svg:hover{
-  color: #EC7542;
-  /* background-color: orange; */
-}
-
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-}
-
-#enterIDBut{
-  margin-top:1rem;
-  background-color:gray;
-  
-}
-
-#enterIDBut:hover{
-  background-color:#EC7542;
-
+  color: var(--orange-20);
 }
 
 
-/*
- * Base structure
- */
+#vertical-div{
 
- .cover-container {
-  max-width: 42em;
+  border-left: 1px solid rgb(221, 221, 221);
+  height: 100px;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+
+}
+
+/*********************************/
+/* logo */
+/*********************************/
+.logo{
+  padding: 1em;
 }
 
 
+/*********************************/
+/* Grid/Text Boxes */
+/*********************************/
+#dashboard-section{
+  /* text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5); */
+  /* box-shadow: inset 0 0 5rem rgba(213, 213, 213, 0.5); */
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 4em;
+  padding-left:6em; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
 
+  background-color: var(--white);
+}
 
- /*
-  Boxes
- */
+#sidenav-section{
+  background-color: var(--black-100);
+  padding:0;
+  padding-bottom:2em;
+}
+
+*, ::after, ::before {
+  box-sizing: content-box;
+}
+
+.row{
+  width: 50%;
+}
 
 
  #box-text{
@@ -71,25 +109,132 @@ svg:hover{
   border: none;
   box-shadow: none;
   text-shadow: none;
+  word-wrap: break-word;
  }
 
+
  .criteria-box{
-  width: 22.188rem; 
-  height:10.313rem;
+  min-width: 12rem;
+  max-width: 12rem;
   padding:2rem;
-  margin-bottom: 1rem;
-  border-style: groove;
-  border-radius: 10px;
-  /* border-radius:1px solid #000000; */
+  flex: 1; /* additionally, equal width */
+  margin-bottom: 1em;
+  margin-right: 1em;
+  border: 2px solid var(--black-100);
+  border-radius: 8px;
  }
+
+#row-creditscore-and-tips{
+  float:left;
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  display: flex;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: row;
+
+  width:100%;
+  padding-bottom: 0em;
+  margin-bottom: 3em;
+}
+
+.row-creditscore{
+  float:left;
+  width: 60%;
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  display:flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content:start;
+  flex-direction: row;
+
+  padding: 1em;
+  padding-bottom: 0em;
+  margin-bottom: 3em;
+}
+
+
+.row-2{
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+#row-statistic{
+  width: 100%;
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  display: inline flex;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: row;
+
+  padding: 1em;
+  padding-bottom: 0em;
+  border-width: 1px;
+  border-color: rgba(213, 213, 213, 0.5);
+  border-radius: 5px;
+  border-style: solid;
+  margin-bottom: 1em;
+}
 
 .user-text-desc{
   margin:0;
   padding:0;
-  font-weight: 700;
+  font-size: small;
+  font-weight: 500;
   color: rgb(182, 182, 182);
+}
+
+.advice-text{
+  color:black; 
+  margin-bottom:2rem;
+}
+
+.user-text-section{
+  margin:0;
+  min-width: 15%;
+  padding:1em;
 
 }
+
+header{
+  margin-bottom: 3em;
+}
+
+.input-form{
+  margin:0;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  display: inline flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: left;
+  flex-direction: row;
+}
+
+.input-box-section{
+  width:50%;
+  margin:0;
+  padding:1em;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  display: inline flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: left;
+  flex-direction: row;
+}
+
+
 .data-text-desc{
   margin:0;
   padding:0;
@@ -119,15 +264,34 @@ svg:hover{
   margin-left:1rem;
 }
 
-.user-text-section{
-  margin:0;
-  padding:0;
-  margin-bottom:3rem;
+/*
+ * Base structure
+ */
+ .cover-container {
+  max-width: 42em;
 }
 
-/*
- * Header
- */
+
+/*********************************/
+/* Header */
+/*********************************/
+.row-header{
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  display: inline flex;
+  align-items:flex-end;
+  justify-content: left;
+  flex-direction: row;
+}
+
+ .navbar{
+  width: 4.5rem;
+  border-right: 1px solid var(--gray-100);
+  height: 100%;
+  background-color: var(--green-100);
+  color: var(--green-100);
+  position:absolute;
+ }
 
 .nav-masthead .nav-link {
   color: rgba(255, 255, 255, .5);
@@ -174,7 +338,7 @@ svg:hover{
 .b-example-vr {
   flex-shrink: 0;
   width: 1.5rem;
-  height: 100vh;
+  height: 100%;
 }
 
 .bi {
@@ -194,15 +358,18 @@ svg:hover{
   display: flex;
   flex-wrap: nowrap;
   padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
+  margin-top: -5px;
   text-align: center;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+  overflow: hidden;
 }
 
 .dropdown-toggle { outline: 0; }
 
+/*********************************/
+/* BUTTON */
+/*********************************/
 .btn-toggle {
   padding: .25rem .5rem;
   font-weight: 600;
@@ -217,6 +384,7 @@ svg:hover{
 
 .btn-toggle::before {
   width: 1.25em;
+  margin: 0;
   line-height: 0;
   content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
   transition: transform .35s ease;
@@ -232,7 +400,7 @@ svg:hover{
 
 .btn-toggle-nav a {
   padding: .1875rem .5rem;
-  margin-top: .125rem;
+  margin: 0;
   margin-left: 1.25rem;
 }
 .btn-toggle-nav a:hover,
@@ -240,6 +408,33 @@ svg:hover{
   background-color: #44655b;
 }
 
+.btn{
+  margin:0;
+}
+
+
 .scrollarea {
-  overflow-y: auto;
+  overflow-y: hidden;
+}
+
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+#enterIDBut{
+  background-color: var(--orange-100);
+  font-size: small;
+  padding: .5em .6em .5em .6em;
+  margin-left: 1em;
+
+}
+
+#enterIDBut:hover{
+  background-color:var(--orange-120);
+
 }

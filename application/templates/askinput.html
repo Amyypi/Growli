@@ -18,22 +18,25 @@
 
     <body>
 
-    <div class="container d-flex w-100 h-100 p-5 flex-column">
-        <header class="mb-auto">
-            <div>
+    <!-- Temporary Logo placement -->
+    <div class="container d-flex w-100 h-100 p-5 flex-column input-form">
+        <header>
+
                 <img class="float-md-start mb-0" style=" margin-right: 1rem; width:2.5rem; height:2.5rem;" src="{{ url_for('static', filename='dist/logo.svg')}}" />
                 <h2 class="float-md-start mb-0" style="padding-right:1rem;">Growli</h2>
-            </div>
+
+
+            <!-- ID INPUT BOX -->
+            <!-- User enters their ID and then it get's the data from the backend to put to the frontend through index.html -->
         </header>
-          
-        <h3 style="margin-top:4rem;">Enter your ID number:</h3>
+        <h3>Enter your ID number:</h3>
+
         <form method="POST" action = "/getdata">
             <div class = "form-group">
                 <input type="text" name = "id">
+                <input class="btn btn-primary" id="enterIDBut" type="submit" value="Enter ID">
             </div>
-            <input class="btn btn-primary" id="enterIDBut" type="submit" value="Enter ID">
         </form>
-
 
         </body>
     </main>
